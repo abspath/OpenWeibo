@@ -1,1 +1,1 @@
-include ':app', ':baserecyclerview', ':net'
+include ':application', ':baserecyclerview', ':net'
