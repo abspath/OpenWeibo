@@ -1,6 +1,5 @@
 package com.abspath.openweibo.util;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.preference.PreferenceManager;
@@ -20,25 +19,25 @@ public class Prefs {
     private static final int DEFAULT_INT_VALUE = -1;
     private static final long DEFAULT_LONG_VALUE = -1L;
     private static final float DEFAULT_FLOAT_VALUE = 0.0f;
-    private static final boolean DEFAULT_BOLLEAN_VALUE = false;
+    private static final boolean DEFAULT_BOOLEAN_VALUE = false;
     private static final String DEFAULT_STRING_VALUE = "";
     private static final Set<String> DEFAULT_STRINGSET_VALUE = null;
     private static Prefs INSTANCE;
-    private static SharedPreferences prefs;
+    private SharedPreferences mPrefs;
     private SharedPreferences.Editor mEditor;
 
     private Prefs() {}
 
     private Prefs(@NonNull Context ctxt) {
-        prefs = PreferenceManager.getDefaultSharedPreferences(ctxt.getApplicationContext());
+        mPrefs = PreferenceManager.getDefaultSharedPreferences(ctxt.getApplicationContext());
     }
 
     private Prefs(@NonNull Context ctxt, @NonNull String name) {
-        prefs = ctxt.getApplicationContext().getSharedPreferences(name, Context.MODE_PRIVATE);
+        mPrefs = ctxt.getApplicationContext().getSharedPreferences(name, Context.MODE_PRIVATE);
     }
 
     private Prefs(@NonNull Context ctxt, @NonNull String name, int mode) {
-        prefs = ctxt.getApplicationContext().getSharedPreferences(name, mode);
+        mPrefs = ctxt.getApplicationContext().getSharedPreferences(name, mode);
     }
 
     public static Prefs get(@NonNull Context ctxt) {
@@ -87,63 +86,56 @@ public class Prefs {
 
 
     public int pullInt(@NonNull String where) {
-        return prefs.getInt(where, DEFAULT_INT_VALUE);
+        return mPrefs.getInt(where, DEFAULT_INT_VALUE);
     }
 
     public long pullLong(@NonNull String where) {
-        return prefs.getLong(where, DEFAULT_LONG_VALUE);
+        return mPrefs.getLong(where, DEFAULT_LONG_VALUE);
     }
 
     public float pullFloat(@NonNull String where) {
-        return prefs.getFloat(where, DEFAULT_FLOAT_VALUE);
+        return mPrefs.getFloat(where, DEFAULT_FLOAT_VALUE);
     }
 
     public boolean pullBoolean(@NonNull String where) {
-        return prefs.getBoolean(where, DEFAULT_BOLLEAN_VALUE);
+        return mPrefs.getBoolean(where, DEFAULT_BOOLEAN_VALUE);
     }
 
     public String pullString(@NonNull String where) {
-        return prefs.getString(where, DEFAULT_STRING_VALUE);
+        return mPrefs.getString(where, DEFAULT_STRING_VALUE);
     }
 
     public Set<String> pullStringSet(@NonNull String where) {
-        return prefs.getStringSet(where, DEFAULT_STRINGSET_VALUE);
+        return mPrefs.getStringSet(where, DEFAULT_STRINGSET_VALUE);
     }
 
 
-
-    @SuppressLint("CommitPrefEdits")
     public Prefs pushInt(@NonNull String where, int what) {
         getEditor().putInt(where, what);
         return INSTANCE;
     }
 
-    @SuppressLint("CommitPrefEdits")
     public Prefs pushLong(@NonNull String where, long what) {
         getEditor().putLong(where, what);
         return INSTANCE;
     }
 
-    @SuppressLint("CommitPrefEdits")
     public Prefs pushFloat(@NonNull String where, float what) {
         getEditor().putFloat(where, what);
         return INSTANCE;
     }
 
-    @SuppressLint("CommitPrefEdits")
     public Prefs pushBoolean(@NonNull String where, boolean what) {
         getEditor().putBoolean(where, what);
         return INSTANCE;
     }
 
-    @SuppressLint("CommitPrefEdits")
-    public Prefs pushString(@NonNull String where, @NonNull String what) {
+    public Prefs pushString(@NonNull String where, String what) {
         getEditor().putString(where, what);
         return INSTANCE;
     }
 
-    @SuppressLint("CommitPrefEdits")
-    public Prefs pushStringSet(@NonNull String where, @NonNull Set<String> what) {
+    public Prefs pushStringSet(@NonNull String where, Set<String> what) {
         getEditor().putStringSet(where, what);
         return INSTANCE;
     }
@@ -159,12 +151,12 @@ public class Prefs {
     }
 
     public void clear() {
-        prefs.edit().clear().apply();
+        mPrefs.edit().clear().apply();
     }
 
 
     private SharedPreferences.Editor getEditor() {
-        if (mEditor == null) mEditor = prefs.edit();
+        if (mEditor == null) mEditor = mPrefs.edit();
         return mEditor;
     }
 
