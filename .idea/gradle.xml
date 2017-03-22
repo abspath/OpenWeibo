@@ -8,7 +8,9 @@
         <option name="modules">
           <set>
             <option value="$PROJECT_DIR$" />
-            <option value="$PROJECT_DIR$/app" />
+            <option value="$PROJECT_DIR$/application" />
+            <option value="$PROJECT_DIR$/baserecyclerview" />
+            <option value="$PROJECT_DIR$/net" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

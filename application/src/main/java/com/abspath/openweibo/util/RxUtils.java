@@ -1,6 +1,9 @@
 package com.abspath.openweibo.util;
 
+import rx.Observable;
 import rx.Subscription;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.schedulers.Schedulers;
 
 /**
  * Title:
@@ -11,6 +14,10 @@ import rx.Subscription;
  */
 public class RxUtils {
     private static final String TAG = RxUtils.class.getSimpleName();
+
+    public static <T> Observable applyBase(Observable<T> observable) {
+        return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
+    }
 
     public static void unSubscribe(Subscription consumer) {
         if (consumer != null && !consumer.isUnsubscribed()) {

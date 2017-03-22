@@ -26,11 +26,10 @@ public interface Api {
 
     @POST()
     @FormUrlEncoded
-    Call<Auth> authorize(@Url String url, @FieldMap Map<String, String> params);
+    Call<Auth> post(@Url String url, @FieldMap Map<String, String> params);
 
-    @POST()
-    @FormUrlEncoded
-    Call<Auth> requestToken(@Url String url, @FieldMap Map<String, String> params);
+    @GET()
+    Call<Auth> get(@Url String url, @QueryMap Map<String, String> params);
 
     @GET(Constant.PUB_TIMELINE_URL)
     Call<PubTimeline> getPubTimelime(@QueryMap Map<String, String> params);

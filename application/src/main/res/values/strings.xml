@@ -12,4 +12,9 @@
     <string name="loading">正在加载…</string>
     <string name="error_data_whole">数据加载失败,点击界面任意位置重试.</string>
 
+    <string name="auth_exception">授权异常:%1$s</string>
+    <string name="auth_canceled">授权被取消,授权失败</string>
+    <string name="auth_success">授权成功</string>
+    <string name="auth_failed">授权失败</string>
+
 </resources>

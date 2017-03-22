@@ -33,7 +33,7 @@ public class Prefs {
     }
 
     private Prefs(@NonNull Context ctxt, @NonNull String name) {
-        mPrefs = ctxt.getApplicationContext().getSharedPreferences(name, Context.MODE_PRIVATE);
+        this(ctxt, name, Context.MODE_PRIVATE);
     }
 
     private Prefs(@NonNull Context ctxt, @NonNull String name, int mode) {
@@ -41,10 +41,7 @@ public class Prefs {
     }
 
     public static Prefs get(@NonNull Context ctxt) {
-        if (INSTANCE == null) {
-            INSTANCE = new Prefs(ctxt);
-        }
-        return INSTANCE;
+        return get(ctxt, false);
     }
 
     public static Prefs get(@NonNull Context ctxt, boolean newInstance) {
@@ -55,10 +52,7 @@ public class Prefs {
     }
 
     public static Prefs get(@NonNull Context ctxt, @NonNull String name) {
-        if (INSTANCE == null) {
-            INSTANCE = new Prefs(ctxt, name);
-        }
-        return INSTANCE;
+        return get(ctxt, name, false);
     }
 
     public static Prefs get(@NonNull Context ctxt, @NonNull String name, boolean newInstance) {
@@ -69,10 +63,7 @@ public class Prefs {
     }
 
     public static Prefs get(@NonNull Context ctxt, @NonNull String name, int mode) {
-        if (INSTANCE == null) {
-            INSTANCE = new Prefs(ctxt, name, mode);
-        }
-        return INSTANCE;
+        return get(ctxt, name, mode, false);
     }
 
     public static Prefs get(@NonNull Context ctxt, @NonNull String name, int mode,

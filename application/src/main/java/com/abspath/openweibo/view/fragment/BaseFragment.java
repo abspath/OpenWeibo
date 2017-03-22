@@ -33,8 +33,6 @@ public abstract class BaseFragment extends Fragment implements NetIView, View.On
 
     public abstract BaseContract.BaseIPresenter<?> getPresenter();
 
-    public abstract void onInitView(View root);
-
     private View mLoading;
     private View mDataErrorWhole;
 
@@ -44,25 +42,27 @@ public abstract class BaseFragment extends Fragment implements NetIView, View.On
         mPresenter = getPresenter();
     }
 
+    public View onBuildView(LayoutInflater inflater, ViewGroup container,
+            Bundle savedInstanceState) {return null;}
+
+    public void onInitView(View root){}
+
     /**
-     * 子类可以调用基类来插入一些共性操作界面, eg: loading dialog, data loading error, net error view 等等
-     * <p>
-     *     <b>注意: 子类传递的 <code>container</code> 必须为一个 <code>FrameLayout</code> 根布局容器</b>
+     * 插入一些全局 UI 界面, eg: loading dialog, data loading error, net error view 等等
      * @param inflater
      * @param container
      * @param savedInstanceState
-     * @return 一个插入全局操作的界面的子类返回的内容 view
+     * @return 一个包含插入了全局UI界面的内容视图层级 View
      */
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState)
     {
-        if (container != null && !(container instanceof FrameLayout))
-            throw new IllegalArgumentException(
-                    "you should pass a container which is a FrameLayout");
-        View result = null;
-        if (container != null) {
-            result = inflater.inflate(R.layout.fragment_base, container, true);
+        View content = onBuildView(inflater, container, savedInstanceState);
+        FrameLayout result = null;
+        if (content != null) {
+            result = (FrameLayout) inflater.inflate(R.layout.fragment_base, container, false);
+            result.addView(content, 0);
             mLoading = result.findViewById(R.id.loading_layout);
             mDataErrorWhole = result.findViewById(R.id.data_error_whole_layout);
             mLoading.setOnClickListener(this);

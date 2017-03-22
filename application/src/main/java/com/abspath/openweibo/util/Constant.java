@@ -14,6 +14,9 @@ public interface Constant {
 
     String APP_SECRET = "a9a31fde34f68df750524cd8701c53e4";
 
+    String REDIRECT_URL = "https://huajianjiang.github.io/";
+
+    String SCOPE = null;
 
     /**
      * 授权
@@ -31,4 +34,6 @@ public interface Constant {
 
 
     String TOKEN_KEY = "token";
+
+
 }

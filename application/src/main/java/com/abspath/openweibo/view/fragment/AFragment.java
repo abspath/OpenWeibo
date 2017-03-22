@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import com.abspath.openweibo.R;
 import com.abspath.openweibo.interfaze.BaseContract;
 
-
 /**
  * Title:
  * <p>Description:
