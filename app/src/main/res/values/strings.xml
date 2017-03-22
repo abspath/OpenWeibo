@@ -1,3 +1,15 @@
 <resources>
-    <string name="app_name">OpenWeibo</string>
+    <string name="app_name">RetrofitRxJavaDemo</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="linearLayoutManager">LinearLayoutManager</string>
+    <string name="gridLayoutManager">LinearLayoutManager</string>
+
+    <string name="action_f">fingerprint</string>
+    <string name="action_a">android</string>
+    <string name="action_b">build</string>
+
+    <string name="loading">正在加载…</string>
+    <string name="error_data_whole">数据加载失败,点击界面任意位置重试.</string>
+
 </resources>

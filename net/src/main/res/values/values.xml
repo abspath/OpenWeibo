@@ -1,0 +1,4 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="ERROR_NETWORK_CONNECTION">无法访问网络!</string>
+</resources>
