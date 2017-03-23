@@ -16,9 +16,7 @@ import com.github.huajianjiang.net.RetrofitManager;
 public class AppManager {
     @SuppressLint("StaticFieldLeak")
     private static AppManager instance;
-
     private Context mAppCtxt;
-
     private RetrofitManager mRetrofitManager;
     private Api mApi;
 

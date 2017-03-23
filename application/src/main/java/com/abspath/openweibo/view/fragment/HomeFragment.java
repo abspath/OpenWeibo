@@ -8,7 +8,6 @@ import android.view.ViewGroup;
 import com.abspath.openweibo.R;
 import com.abspath.openweibo.interfaze.BaseContract;
 
-
 /**
  * Title:
  * <p>Description:
@@ -16,8 +15,8 @@ import com.abspath.openweibo.interfaze.BaseContract;
  * <br>Date: 2017/2/27
  * <br>Email: developer.huajianjiang@gmail.com
  */
-public class FFragment extends BaseFragment {
-    private static final String TAG = FFragment.class.getSimpleName();
+public class HomeFragment extends BaseFragment {
+    private static final String TAG = HomeFragment.class.getSimpleName();
 
     @Override
     public BaseContract.BaseIPresenter<?> getPresenter() {
@@ -33,7 +32,7 @@ public class FFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_f, container, false);
+        return inflater.inflate(R.layout.frag_home, container, false);
     }
 
 

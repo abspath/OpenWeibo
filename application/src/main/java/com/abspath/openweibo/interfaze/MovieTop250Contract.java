@@ -21,6 +21,7 @@ public interface MovieTop250Contract {
         boolean isActive();
 
         Context getCtxt();
+
     }
 
     interface IPresenter extends BaseContract.BaseIPresenter<IView> {

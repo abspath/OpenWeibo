@@ -15,6 +15,8 @@ import android.view.View;
 
 public class ViewUtils {
 
+    private ViewUtils(){}
+
     @SuppressWarnings("unchecked")
     public static <T extends View> T find(@NonNull View parent, int id) {
         return (T) parent.findViewById(id);

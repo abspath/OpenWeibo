@@ -35,7 +35,6 @@ public class MainFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState)
     {
-
         return inflater.inflate(R.layout.fragment_main, container, false);
     }
 
@@ -69,15 +68,14 @@ public class MainFragment extends Fragment
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new FFragment();
+                    return new HomeFragment();
                 case 1:
                     return new AFragment();
                 case 2:
-                    MainFragment mainFrag = new MainFragment();
+                    return new HomeFragment();
 //                    MovieTop250Presenter presenter = new MovieTop250Presenter();
 //                    presenter.onBindView(movieView);
 //                    movieView.onBindPresenter(presenter);
-                    return mainFrag;
             }
             throw new RuntimeException("error in switch navi");
         }
