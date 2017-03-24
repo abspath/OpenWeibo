@@ -1,8 +1,6 @@
 package com.abspath.openweibo.interfaze;
 
-import android.content.Context;
-
-import com.abspath.openweibo.data.model.PubTimeline;
+import com.abspath.openweibo.data.model.Weibo;
 
 /**
  * Title:
@@ -12,25 +10,17 @@ import com.abspath.openweibo.data.model.PubTimeline;
  * <br>Email: developer.huajianjiang@gmail.com
  */
 
-public interface MovieTop250Contract {
+public interface WeiboContract {
 
     interface IView extends BaseContract.BaseIView<IPresenter>, NetIView {
         // extra view api
-        void showMovies(PubTimeline top250);
+        void showWeiboList(Weibo weibos);
 
         boolean isActive();
-
-        Context getCtxt();
-
     }
 
     interface IPresenter extends BaseContract.BaseIPresenter<IView> {
-        int TYPE_REFRESH = 0;
-        int TYPE_LOAD_MORE = 1;
-
-        boolean needRestart();
-
         // extra presenter api
-        void loadMovies(boolean forceUpdate, int updateType);
+        void loadMovies(boolean forceUpdate, UpdateType updateType);
     }
 }

@@ -3,8 +3,9 @@ package com.abspath.openweibo;
 import android.annotation.SuppressLint;
 import android.content.Context;
 
-import com.abspath.openweibo.net.Api;
+import com.abspath.openweibo.net.WeiboApi;
 import com.github.huajianjiang.net.RetrofitManager;
+import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 /**
  * Title:
@@ -15,10 +16,14 @@ import com.github.huajianjiang.net.RetrofitManager;
  */
 public class AppManager {
     @SuppressLint("StaticFieldLeak")
-    private static AppManager instance;
+    private static AppManager INSTANCE;
     private Context mAppCtxt;
+    //微博Auth2授权后的 Token 信息
+    private Oauth2AccessToken mAccessToken;
+    // OkHttp + Retrofit 初始化和创建API接口封装的管理类
     private RetrofitManager mRetrofitManager;
-    private Api mApi;
+    // 微博 API 接口描述
+    private WeiboApi mApi;
 
     private AppManager(Context ctxt) {
         mAppCtxt = ctxt.getApplicationContext();
@@ -26,10 +31,10 @@ public class AppManager {
 
     public static AppManager getInstance(Context ctxt) {
         synchronized (AppManager.class) {
-            if (instance == null) {
-                instance = new AppManager(ctxt);
+            if (INSTANCE == null) {
+                INSTANCE = new AppManager(ctxt);
             }
-            return instance;
+            return INSTANCE;
         }
     }
 
@@ -40,10 +45,19 @@ public class AppManager {
         return mRetrofitManager;
     }
 
-    public Api getAppService() {
+    public WeiboApi getWeiboService() {
         if (mApi == null) {
-            mApi = getRetrofitManager().createService(Api.class);
+            mApi = getRetrofitManager().createService(WeiboApi.class);
         }
         return mApi;
     }
+
+    public Oauth2AccessToken getAccessToken() {
+        return mAccessToken;
+    }
+
+    public void setAccessToken(Oauth2AccessToken accessToken) {
+        mAccessToken = accessToken;
+    }
+
 }

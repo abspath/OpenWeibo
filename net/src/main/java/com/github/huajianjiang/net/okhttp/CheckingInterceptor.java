@@ -35,6 +35,7 @@ public class CheckingInterceptor implements Interceptor {
             throw new Exp(ErrorParser.E.NO_NET,
                     mCtxt.getString(R.string.ERROR_NETWORK_CONNECTION));
         }
+        Logger.e(TAG, "CheckingInterceptor");
         return chain.proceed(chain.request());
     }
 }

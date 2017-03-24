@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/AppRippleForeground"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="@dimen/item_padding_8dp"
+    android:paddingEnd="@dimen/item_padding_16dp"
+    android:paddingLeft="@dimen/item_padding_16dp"
+    android:paddingRight="@dimen/item_padding_16dp"
+    android:paddingStart="@dimen/item_padding_16dp"
+    android:paddingTop="@dimen/item_padding_8dp"
+    android:clickable="true">
+
+    <RelativeLayout
+        android:id="@+id/header_part"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/avatar"
+            android:layout_width="@dimen/image_weibo_width"
+            android:layout_height="@dimen/image_weibo_height"
+            android:contentDescription="@string/accessibility_avatar"
+            android:scaleType="centerCrop"
+            tools:src="@color/colorAccent"/>
+
+        <TextView
+            android:id="@+id/userName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="@dimen/item_margin_16dp"
+            android:layout_marginStart="@dimen/item_margin_16dp"
+            android:layout_toEndOf="@+id/avatar"
+            android:layout_toRightOf="@id/avatar"
+            android:textSize="@dimen/txt_size_primary_14sp"
+            android:text="@string/userName_test"/>
+
+        <TextView
+            android:id="@+id/date"
+            style="@style/AppBaseTextViewStyle.AppSecondaryTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignLeft="@id/userName"
+            android:layout_alignStart="@id/userName"
+            android:layout_below="@id/userName"
+            android:layout_marginTop="@dimen/item_margin_2dp"
+            tools:text="@string/date_test"/>
+
+        <TextView
+            android:id="@+id/source"
+            style="@style/AppBaseTextViewStyle.AppSecondaryTextViewStyle"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@id/date"
+            android:layout_marginLeft="@dimen/item_margin_2dp"
+            android:layout_marginStart="@dimen/item_margin_2dp"
+            android:layout_toEndOf="@id/date"
+            android:layout_toRightOf="@id/date"
+            tools:text="@string/src_test"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/content"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/header_part"
+        android:layout_marginTop="@dimen/item_margin_8dp"
+        android:textSize="@dimen/txt_size_primary_16sp"
+        android:text="@string/content_test"/>
+
+    <!--<ImageView-->
+        <!--android:layout_width=""-->
+        <!--android:layout_height=""/>-->
+
+</RelativeLayout>

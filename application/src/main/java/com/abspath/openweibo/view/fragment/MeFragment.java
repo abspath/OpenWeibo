@@ -15,8 +15,8 @@ import com.abspath.openweibo.interfaze.BaseContract;
  * <br>Date: 2017/2/27
  * <br>Email: developer.huajianjiang@gmail.com
  */
-public class HomeFragment extends BaseFragment {
-    private static final String TAG = HomeFragment.class.getSimpleName();
+public class MeFragment extends BaseFragment {
+    private static final String TAG = MeFragment.class.getSimpleName();
 
     @Override
     public BaseContract.BaseIPresenter<?> getPresenter() {
@@ -32,8 +32,6 @@ public class HomeFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.frag_home, container, false);
+        return inflater.inflate(R.layout.frag_me, container, false);
     }
-
-
 }

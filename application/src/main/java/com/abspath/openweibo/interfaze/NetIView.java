@@ -10,6 +10,10 @@ package com.abspath.openweibo.interfaze;
 
 public interface NetIView {
 
+    int TYPE_REFRESH = 0;
+
+    int TYPE_LOAD_MORE = 1;
+
     void showLoadingUI();
 
     void showSuccessUI();

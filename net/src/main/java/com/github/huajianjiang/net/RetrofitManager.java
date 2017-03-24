@@ -28,16 +28,16 @@ public class RetrofitManager {
     private static final int READ_TIMEOUT = 15; //sec
     private static final int WRITE_TIMEOUT = 15; //sec
 
-    private static RetrofitManager instance;
+    private static RetrofitManager INSTANCE;
     private OkHttpClient mOkHttpClient;
     private Retrofit mRetrofit;
 
     public static RetrofitManager getInstance(Context ctxt) {
         synchronized (RetrofitManager.class) {
-            if (instance == null) {
-                instance = new RetrofitManager(ctxt);
+            if (INSTANCE == null) {
+                INSTANCE = new RetrofitManager(ctxt);
             }
-            return instance;
+            return INSTANCE;
         }
     }
 

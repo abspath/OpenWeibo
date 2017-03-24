@@ -14,6 +14,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.abspath.openweibo.R;
+import com.abspath.openweibo.presenter.WeiboPresenter;
 
 
 /**
@@ -35,7 +36,7 @@ public class MainFragment extends Fragment
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
             Bundle savedInstanceState)
     {
-        return inflater.inflate(R.layout.fragment_main, container, false);
+        return inflater.inflate(R.layout.frag_main, container, false);
     }
 
     @Override
@@ -59,7 +60,6 @@ public class MainFragment extends Fragment
     }
 
     private class MainPagerAdapter extends FragmentPagerAdapter {
-
         MainPagerAdapter(FragmentManager fm) {
             super(fm);
         }
@@ -68,14 +68,16 @@ public class MainFragment extends Fragment
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    return new HomeFragment();
+                    WeiboFragment weiboView = new WeiboFragment();
+                    WeiboPresenter presenter = new WeiboPresenter();
+                    presenter.onBindView(weiboView);
+                    weiboView.onBindPresenter(presenter);
+                    return weiboView;
                 case 1:
-                    return new AFragment();
+                    return new MsgFragment();
                 case 2:
-                    return new HomeFragment();
-//                    MovieTop250Presenter presenter = new MovieTop250Presenter();
-//                    presenter.onBindView(movieView);
-//                    movieView.onBindPresenter(presenter);
+                    return new MeFragment();
+
             }
             throw new RuntimeException("error in switch navi");
         }

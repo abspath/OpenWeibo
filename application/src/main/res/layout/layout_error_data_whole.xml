@@ -7,7 +7,7 @@
     android:clickable="true"
     android:visibility="gone"
     android:background="@color/app_background"
-    android:foreground="@drawable/bg_app_bg_borderless_ripple">
+    android:foreground="@drawable/bg_app_borderless_ripple">
 
     <TextView
         android:layout_width="wrap_content"

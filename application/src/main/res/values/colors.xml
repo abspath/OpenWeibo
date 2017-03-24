@@ -20,6 +20,7 @@
     <color name="md_blue_grey_950">#ff21272b</color>
     <!-- Material Color 参考  END-->
 
+
     <!-- App Color START-->
     <color name="app_foreground">#F8F8F8</color>
     <color name="app_background">#eaeaea</color>
@@ -27,6 +28,10 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="colorControlHighlight">#333F51B5</color>
+
+    <color name="transparent">#00000000</color>
+    <color name="translucent_dark">#66ffffff</color>
+    <color name="translucent_light">#66000000</color>
 
     <color name="textColorPrimary">@color/md_grey_850</color>
     <color name="textColorSecondary">@color/md_grey_600</color>

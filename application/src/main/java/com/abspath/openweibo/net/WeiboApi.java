@@ -1,6 +1,6 @@
 package com.abspath.openweibo.net;
 
-import com.abspath.openweibo.data.model.PubTimeline;
+import com.abspath.openweibo.data.model.Weibo;
 import com.abspath.openweibo.util.Constant;
 import com.github.huajianjiang.net.Echo;
 
@@ -10,6 +10,7 @@ import retrofit2.http.FieldMap;
 import retrofit2.http.FormUrlEncoded;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
+import retrofit2.http.Query;
 import retrofit2.http.QueryMap;
 import retrofit2.http.Url;
 import rx.Observable;
@@ -22,7 +23,7 @@ import rx.Observable;
  * <br>Email: developer.huajianjiang@gmail.com
  */
 
-public interface Api {
+public interface WeiboApi {
 
     @POST()
     @FormUrlEncoded
@@ -32,6 +33,6 @@ public interface Api {
     <T> Observable<Echo<T>> get(@Url String url, @QueryMap Map<String, String> params);
 
     @GET(Constant.PUB_TIMELINE_URL)
-    Observable<PubTimeline> getPubTimelime(@QueryMap Map<String, String> params);
+    Observable<Weibo> getWeiboList(@Query("access_token") String access_token);
 
 }

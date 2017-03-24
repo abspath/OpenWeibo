@@ -15,7 +15,7 @@ import rx.schedulers.Schedulers;
 public class RxUtils {
     private static final String TAG = RxUtils.class.getSimpleName();
 
-    public static <T> Observable applyBase(Observable<T> observable) {
+    public static <T> Observable<T> applyBase(Observable<T> observable) {
         return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());
     }
 

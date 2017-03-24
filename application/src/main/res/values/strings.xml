@@ -5,17 +5,28 @@
     <string name="linearLayoutManager">LinearLayoutManager</string>
     <string name="gridLayoutManager">LinearLayoutManager</string>
 
-    <string name="action_f">fingerprint</string>
-    <string name="action_a">android</string>
-    <string name="action_b">build</string>
+    <string name="home">微博</string>
+    <string name="msg">消息</string>
+    <string name="me">我</string>
 
     <string name="loading">正在加载…</string>
     <string name="error_data_whole">数据加载失败,点击界面任意位置重试.</string>
 
+    <string name="offline">未登录,请先登录.</string>
     <string name="weibo_sign_in">微博账号登录</string>
     <string name="auth_exception">授权异常:%1$s</string>
     <string name="auth_canceled">授权被取消,授权失败</string>
     <string name="auth_success">授权成功</string>
     <string name="auth_failed">授权失败</string>
+
+    <string name="source">来自:%!$S</string>
+
+    <string name="accessibility_avatar">微博用户头像</string>
+
+    <string name="userName_test">huajianjiang</string>
+    <string name="name_test">Huajian Jiang</string>
+    <string name="date_test">3 分钟前</string>
+    <string name="src_test">来自微博网页</string>
+    <string name="content_test">*****************实用强大的 WiFi 管理工具***************\n1. 一目了然的列表显示周围 WiFi 接入点信息和当前连接的 WiFi 的详细信息;\n2. WiFi 局域网邻居，侦测所有当前连接到此 WiFi 的客户端 ，防蹭网，兼容所有路由器;\n3. WiFi 信号折线图，实时显示周围 WiFi 的信号趋势;\n4. 图声结合，寻找指定 WiFi 的地理位置;\n5. 直接查看手机系统保存的 WiFi 名称和对应的密码;\n*************** 感谢使用，记得反馈哦  :-)  ***************</string>
 
 </resources>

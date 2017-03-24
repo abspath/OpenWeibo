@@ -1,5 +1,7 @@
 package com.abspath.openweibo.interfaze;
 
+import android.content.Context;
+
 /**
  * Title:
  * <p>Description:
@@ -12,6 +14,7 @@ public interface BaseContract {
 
     interface BaseIView<P> {
         void onBindPresenter(P presenter);
+        Context getCtxt();
     }
 
     interface BaseIPresenter<V> {

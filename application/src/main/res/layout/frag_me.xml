@@ -6,8 +6,8 @@
 
     <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
               android:layout_centerInParent="true"
-              android:text="@string/action_a"
-              android:textColor="@color/md_deep_teal_200"
+              android:text="@string/me"
+              android:textColor="@color/md_deep_teal_500"
               android:textSize="28sp"/>
 
 </RelativeLayout>

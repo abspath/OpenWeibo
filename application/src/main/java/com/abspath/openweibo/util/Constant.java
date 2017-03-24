@@ -30,7 +30,7 @@ public interface Constant {
     /**
      * 获得公共微博
      */
-    String PUB_TIMELINE_URL = "statuses/public_timeline";
+    String PUB_TIMELINE_URL = "statuses/public_timeline.json";
 
 
     String TOKEN_KEY = "token";

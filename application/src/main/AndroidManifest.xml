@@ -3,6 +3,7 @@
           package="com.abspath.openweibo">
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
         android:allowBackup="true"
@@ -13,6 +14,12 @@
         android:theme="@style/AppTheme">
 
         <activity android:name=".view.activity.MainActivity">
+
+        </activity>
+
+        <activity
+            android:name=".view.activity.SignInActivity"
+            android:theme="@style/SignInTheme">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
@@ -21,7 +28,7 @@
         </activity>
 
         <meta-data
-            android:name="com.github.huajianjiang.douban.denpency.AppGlideModule"
+            android:name="com.abspath.openweibo.depency.AppGlideModule"
             android:value="GlideModule"/>
 
     </application>

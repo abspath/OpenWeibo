@@ -3,6 +3,8 @@ package com.github.huajianjiang.net.okhttp;
 import android.net.Uri;
 import android.text.TextUtils;
 
+import com.github.huajianjiang.net.util.Logger;
+
 import org.json.JSONObject;
 
 import java.io.IOException;
@@ -42,6 +44,7 @@ public class ParamInterceptor implements Interceptor {
 
     @Override
     public Response intercept(Chain chain) throws IOException {
+        Logger.e(TAG, "CheckingInterceptor");
         Request originalRequest = chain.request();
         if (mType == TYPE_NONE || mParams == null || mParams.isEmpty())
             return chain.proceed(originalRequest);

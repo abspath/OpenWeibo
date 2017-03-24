@@ -17,6 +17,10 @@
 
     </style>
 
+    <style name="SignInTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="android:windowFullscreen">true</item>
+    </style>
+
     <style name="AppTheme.AppBarOverlay" parent="ThemeOverlay.AppCompat.Dark.ActionBar"/>
     <style name="AppTheme.PopupOverlay" parent="ThemeOverlay.AppCompat.Light"/>
 
@@ -25,10 +29,26 @@
         <item name="android:textColor">@color/textColorPrimary</item>
         <item name="android:lineSpacingMultiplier">1.2</item>
         <item name="android:textColorSecondary">@color/textColorSecondary</item>
+        <item name="android:textSize">@dimen/txt_size_primary_14sp</item>
+    </style>
+
+    <style name="AppBaseTextViewStyle.AppSecondaryTextViewStyle">
+        <item name="android:textColor">@color/textColorSecondary</item>
+        <item name="android:textSize">@dimen/txt_size_secondary_10sp</item>
     </style>
 
     <style name="LoadingProgressBar" parent="Widget.AppCompat.ProgressBar">
 
+    </style>
+
+    <style name="AppRippleForeground">
+        <item name="android:foreground">@drawable/fg_app_ripple</item>
+        <item name="android:background">@color/app_foreground</item>
+    </style>
+
+    <style name="AppRippleForegroundReverse">
+        <item name="android:foreground">@drawable/fg_app_ripple</item>
+        <item name="android:background">@color/app_background</item>
     </style>
 
 </resources>

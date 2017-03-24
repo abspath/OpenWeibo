@@ -20,16 +20,17 @@ public class LoggingInterceptor implements Interceptor {
     private static final String TAG = LoggingInterceptor.class.getSimpleName();
     @Override
     public Response intercept(Chain chain) throws IOException {
+        Logger.e(TAG, "LoggingInterceptor");
         Request request = chain.request();
         long t1 = System.nanoTime();
-        Logger.i(TAG,
+        Logger.e(TAG,
                 String.format(Locale.getDefault(), "Sending request %s on %s%n%s", request.url(),
                         chain.connection(), request.headers()));
 
         Response response = chain.proceed(request);
 
         long t2 = System.nanoTime();
-        Logger.i(TAG, String.format(Locale.getDefault(), "Received response for %s in %.1fms%n%s",
+        Logger.e(TAG, String.format(Locale.getDefault(), "Received response for %s in %.1fms%n%s",
                 response.request().url(), (t2 - t1) / 1e6d, response.headers()));
 
         return response;
