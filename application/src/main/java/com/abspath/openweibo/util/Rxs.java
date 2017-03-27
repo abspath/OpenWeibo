@@ -12,8 +12,8 @@ import rx.schedulers.Schedulers;
  * <br>Date: 2017/2/27
  * <br>Email: developer.huajianjiang@gmail.com
  */
-public class RxUtils {
-    private static final String TAG = RxUtils.class.getSimpleName();
+public class Rxs {
+    private static final String TAG = Rxs.class.getSimpleName();
 
     public static <T> Observable<T> applyBase(Observable<T> observable) {
         return observable.subscribeOn(Schedulers.io()).observeOn(AndroidSchedulers.mainThread());

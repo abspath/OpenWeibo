@@ -6,7 +6,7 @@ import com.abspath.openweibo.interfaze.PreCallback;
 import com.abspath.openweibo.interfaze.UpdateType;
 import com.abspath.openweibo.interfaze.WeiboContract;
 import com.abspath.openweibo.util.Apps;
-import com.abspath.openweibo.util.RxUtils;
+import com.abspath.openweibo.util.Rxs;
 import com.github.huajianjiang.net.rxjava.MySubscriber;
 
 /**
@@ -28,13 +28,10 @@ public class WeiboPresenter extends BasePresenter<WeiboContract.IView>
     }
 
     @Override
-    public void stop() {
-    }
-
-    @Override
     public void loadWeibos(boolean forceUpdate, UpdateType updateType) {
         if (!isActive() || !Apps.checkLoginStatus()) return;
-        RxUtils.applyBase(
+
+        task = Rxs.applyBase(
                 AppManager.getInstance().getWeiboService().getWeiboList(Apps.getAccessToken()))
                 .subscribe(new MySubscriber<>(new PreCallback<Weibo>(view) {
                     @Override

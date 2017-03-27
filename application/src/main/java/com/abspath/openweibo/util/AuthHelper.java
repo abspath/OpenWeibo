@@ -68,7 +68,7 @@ public final class AuthHelper implements WeiboAuthListener {
     @Override
     public void onComplete(final Bundle bundle) {
         Logger.e(TAG, "onComplete>>>>>>>>>>>>" + Thread.currentThread());
-        RxUtils.applyBase(Observable.empty()).doOnCompleted(new Action0() {
+        Rxs.applyBase(Observable.empty()).doOnCompleted(new Action0() {
             @Override
             public void call() {
                 Logger.e(TAG, "call>>>>>>>>>>>>" + Thread.currentThread());
@@ -79,7 +79,7 @@ public final class AuthHelper implements WeiboAuthListener {
                     AppManager.getInstance(acti).setAccessToken(mAccessToken);
                     // 保存 Token 到 SharedPreferences
                     AccessTokenKeeper.writeAccessToken(acti.getApplicationContext(), mAccessToken);
-                    MsgUtils.longToast(acti.getApplicationContext(),
+                    Msgs.longToast(acti.getApplicationContext(),
                             acti.getString(R.string.auth_success));
                     acti.startActivity(new Intent(acti, MainActivity.class));
                     acti.finish();
@@ -93,7 +93,7 @@ public final class AuthHelper implements WeiboAuthListener {
                     if (!TextUtils.isEmpty(code)) {
                         message = message + "\nObtained the code: " + code;
                     }
-                    MsgUtils.longToast(acti.getApplicationContext(), message);
+                    Msgs.longToast(acti.getApplicationContext(), message);
                 }
             }
         }).subscribe();
@@ -103,7 +103,7 @@ public final class AuthHelper implements WeiboAuthListener {
     public void onWeiboException(WeiboException e) {
         Activity acti = mActivityRef.get();
         if (acti == null) return;
-        MsgUtils.longToast(acti.getApplicationContext(),
+        Msgs.longToast(acti.getApplicationContext(),
                 String.format(acti.getString(R.string.auth_exception), e.getMessage()));
     }
 
@@ -111,6 +111,6 @@ public final class AuthHelper implements WeiboAuthListener {
     public void onCancel() {
         Activity acti = mActivityRef.get();
         if (acti == null) return;
-        MsgUtils.longToast(acti.getApplicationContext(), acti.getString(R.string.auth_canceled));
+        Msgs.longToast(acti.getApplicationContext(), acti.getString(R.string.auth_canceled));
     }
 }

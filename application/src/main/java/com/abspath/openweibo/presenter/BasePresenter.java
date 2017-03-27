@@ -1,6 +1,9 @@
 package com.abspath.openweibo.presenter;
 
 import com.abspath.openweibo.interfaze.BaseContract;
+import com.abspath.openweibo.util.Rxs;
+
+import rx.Subscription;
 
 /**
  * Title:
@@ -11,6 +14,7 @@ import com.abspath.openweibo.interfaze.BaseContract;
  */
 public abstract class BasePresenter<V> implements BaseContract.BaseIPresenter<V> {
     private static final String TAG = BasePresenter.class.getSimpleName();
+    protected Subscription task;
     protected V view;
 
     @Override
@@ -26,4 +30,10 @@ public abstract class BasePresenter<V> implements BaseContract.BaseIPresenter<V>
     protected boolean isActive() {
         return view != null;
     }
+
+    @Override
+    public void stop() {
+        Rxs.unSubscribe(task);
+    }
+
 }

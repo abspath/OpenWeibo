@@ -13,9 +13,9 @@ import android.view.View;
  * <br>Email: developer.huajianjiang@gmail.com
  */
 
-public class ViewUtils {
+public class Views {
 
-    private ViewUtils(){}
+    private Views(){}
 
     @SuppressWarnings("unchecked")
     public static <T extends View> T find(@NonNull View parent, int id) {

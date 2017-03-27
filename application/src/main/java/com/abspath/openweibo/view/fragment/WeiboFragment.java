@@ -13,7 +13,7 @@ import com.abspath.openweibo.data.model.Weibo;
 import com.abspath.openweibo.interfaze.BaseContract;
 import com.abspath.openweibo.interfaze.WeiboContract;
 import com.abspath.openweibo.util.Logger;
-import com.abspath.openweibo.util.ViewUtils;
+import com.abspath.openweibo.util.Views;
 
 /**
  * Title:
@@ -35,7 +35,7 @@ public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
 
     @Override
     public void onInitView(View root) {
-        mRv = ViewUtils.find(root, R.id.rv);
+        mRv = Views.find(root, R.id.rv);
         mAdapter = new WeiboAdapter(getActivity());
         mRv.setAdapter(mAdapter);
         mRv.addItemDecoration(

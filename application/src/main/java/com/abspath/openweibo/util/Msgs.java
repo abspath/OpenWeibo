@@ -12,7 +12,7 @@ import android.widget.Toast;
  * <br>Email: developer.huajianjiang@gmail.com
  */
 
-public class MsgUtils {
+public class Msgs {
 
     public static void shortToast(@NonNull Context ctxt, int resId) {
         Toast.makeText(ctxt, resId, Toast.LENGTH_SHORT).show();
