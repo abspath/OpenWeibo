@@ -18,7 +18,7 @@ import com.sina.weibo.sdk.auth.sso.SsoHandler;
  * <br>Email: developer.huajianjiang@gmail.com
  */
 public class SignInActivity extends AppCompatActivity {
-    private AuthHelper mAuthHelper;
+    private SsoHandler mSsoHandler;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -26,8 +26,7 @@ public class SignInActivity extends AppCompatActivity {
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(R.layout.acti_sign_in);
-        mAuthHelper = new AuthHelper(SignInActivity.this);
-        mAuthHelper.checkAuth();
+        mSsoHandler = AuthHelper.checkAuth(SignInActivity.this);
     }
 
     @Override
@@ -35,7 +34,7 @@ public class SignInActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
         // SSO 授权回调
         // 重要：发起 SSO 登陆的 Activity 必须重写 onActivityResults
-        final SsoHandler ssoHandler = mAuthHelper.getSsoHandler();
+        final SsoHandler ssoHandler = mSsoHandler;
         if (ssoHandler != null) {
             ssoHandler.authorizeCallBack(requestCode, resultCode, data);
         }

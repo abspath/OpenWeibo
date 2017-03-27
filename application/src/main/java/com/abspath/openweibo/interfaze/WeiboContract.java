@@ -13,7 +13,7 @@ public interface WeiboContract {
 
     interface IView extends BaseContract.BaseIView<IPresenter>, PreIView {
         // extra view api
-        void showWeiboList(Weibo weibos);
+        void showWeibos(Weibo weibos, UpdateType updateType);
     }
 
     interface IPresenter extends BaseContract.BaseIPresenter<IView> {

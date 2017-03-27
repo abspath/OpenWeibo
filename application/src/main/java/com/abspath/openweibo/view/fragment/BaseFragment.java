@@ -20,11 +20,10 @@ import com.abspath.openweibo.util.Logger;
  * <br>Date: 2017/3/22
  * <br>Email: developer.huajianjiang@gmail.com
  */
-
 public abstract class BaseFragment extends Fragment implements PreIView, View.OnClickListener {
     private static final String TAG = BaseFragment.class.getSimpleName();
 
-    private BaseContract.BaseIPresenter<?> mPresenter;
+    private BaseContract.BaseIPresenter<?> mP;
 
     /**
      * 是否第一次页面加载(也就是是否第一次进行网络数据请求)
@@ -39,7 +38,7 @@ public abstract class BaseFragment extends Fragment implements PreIView, View.On
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mPresenter = getPresenter();
+        mP = getPresenter();
     }
 
     public View onBuildView(LayoutInflater inflater, ViewGroup container,
@@ -80,9 +79,11 @@ public abstract class BaseFragment extends Fragment implements PreIView, View.On
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
-        if ((mFirstVisible) && mPresenter != null && getUserVisibleHint()) {
+        Logger.e(TAG, "onActivityCreated==>");
+        if (mFirstVisible && mP != null && getUserVisibleHint())
+        {
             Logger.e(TAG, "****onActivityCreated*** loading Data");
-            mPresenter.start();
+            mP.start();
             mFirstVisible = false;
         }
     }
@@ -90,11 +91,11 @@ public abstract class BaseFragment extends Fragment implements PreIView, View.On
     @Override
     public void setUserVisibleHint(boolean isVisibleToUser) {
         super.setUserVisibleHint(isVisibleToUser);
-        if ((mFirstVisible && mPresenter != null && getUserVisibleHint() &&
-             isVisible()))
+        Logger.e(TAG, "setUserVisibleHint==>" + getUserVisibleHint());
+        if (mFirstVisible && mP != null && getUserVisibleHint() && isVisible())
         {
             Logger.e(TAG, "setUserVisibleHint===>" + "loading Data");
-            mPresenter.start();
+            mP.start();
             mFirstVisible = false;
         }
     }
@@ -103,9 +104,9 @@ public abstract class BaseFragment extends Fragment implements PreIView, View.On
     public void onDestroyView() {
         super.onDestroyView();
         //取消网络请求或者异步任务
-        if (mPresenter != null) {
-            mPresenter.stop();
-            mPresenter.unbindView();
+        if (mP != null) {
+            mP.stop();
+            mP.unbindView();
         }
     }
 
@@ -145,10 +146,10 @@ public abstract class BaseFragment extends Fragment implements PreIView, View.On
     }
 
     private void retry() {
-        showLoading();
         //重新加载数据
-        if (mPresenter != null) {
-            mPresenter.start();
+        if (mP != null) {
+            showLoading();
+            mP.start();
         }
     }
 
@@ -159,7 +160,6 @@ public abstract class BaseFragment extends Fragment implements PreIView, View.On
 
     @Override
     public void showSuccessUi() {
-
     }
 
     @Override

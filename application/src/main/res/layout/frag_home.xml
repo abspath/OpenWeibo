@@ -6,17 +6,25 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.github.huajianjiang.baserecyclerview.widget.BaseRecyclerView
-        android:id="@+id/rv"
+    <com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout
+        android:id="@+id/srl"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:clipToPadding="false"
-        app:hasFixedSize="true"
-        app:layoutManager="@string/linearLayoutManager"
-        tools:listitem="@layout/item_weibo"/>
+        app:colorSchemes="@array/colorSchemes"
+        app:srl_direction="both">
 
+        <com.github.huajianjiang.baserecyclerview.widget.BaseRecyclerView
+            android:id="@+id/rv"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:clipToPadding="false"
+            app:hasFixedSize="true"
+            app:layoutManager="@string/linearLayoutManager"
+            tools:listitem="@layout/item_weibo"/>
+
+    </com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout>
 
 </RelativeLayout>

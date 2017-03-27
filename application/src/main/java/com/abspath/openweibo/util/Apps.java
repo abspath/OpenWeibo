@@ -1,11 +1,14 @@
 package com.abspath.openweibo.util;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
 import android.support.design.widget.Snackbar;
 import android.view.View;
 
 import com.abspath.openweibo.AppManager;
 import com.abspath.openweibo.R;
+import com.abspath.openweibo.view.activity.SignInActivity;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
 /**
@@ -18,9 +21,15 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 public class Apps {
     private static final String TAG = Apps.class.getSimpleName();
 
-    public static boolean checkLoginStatus() {
+    public static boolean checkLoginStatus(Context ctxt, boolean force) {
         Oauth2AccessToken accessToken = AppManager.getInstance().getAccessToken();
-        return accessToken != null && accessToken.isSessionValid();
+        boolean isValid = accessToken != null && accessToken.isSessionValid();
+        if (!isValid || force) {
+            Intent signInIntent = new Intent(ctxt, SignInActivity.class);
+            signInIntent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            ctxt.startActivity(signInIntent);
+        }
+        return isValid;
     }
 
     public static String getAccessToken() {
@@ -34,7 +43,7 @@ public class Apps {
                 .setAction(R.string.weibo_sign_in, new View.OnClickListener() {
                     @Override
                     public void onClick(View v) {
-                        authHelper.doAuth();
+
                     }
                 });
         snackbar.show();

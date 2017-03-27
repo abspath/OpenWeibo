@@ -7,6 +7,7 @@ import com.abspath.openweibo.interfaze.UpdateType;
 import com.abspath.openweibo.interfaze.WeiboContract;
 import com.abspath.openweibo.util.Apps;
 import com.abspath.openweibo.util.Rxs;
+import com.github.huajianjiang.net.Exp;
 import com.github.huajianjiang.net.rxjava.MySubscriber;
 
 /**
@@ -19,24 +20,41 @@ import com.github.huajianjiang.net.rxjava.MySubscriber;
 public class WeiboPresenter extends BasePresenter<WeiboContract.IView>
         implements WeiboContract.IPresenter
 {
+    private int mPage = 1;
+
     public WeiboPresenter() {
     }
 
     @Override
     public void start() {
-        loadWeibos(false, UpdateType.TYPE_NONE);
+        loadWeibos(false, UpdateType.TYPE_REFRESH);
     }
 
     @Override
-    public void loadWeibos(boolean forceUpdate, UpdateType updateType) {
-        if (!isActive() || !Apps.checkLoginStatus()) return;
-
-        task = Rxs.applyBase(
-                AppManager.getInstance().getWeiboService().getWeiboList(Apps.getAccessToken()))
+    public void loadWeibos(final boolean forceUpdate, final UpdateType updateType) {
+        if (!isActive()) return;
+        if (forceUpdate || UpdateType.TYPE_REFRESH == updateType) {
+            mPage = 1;
+        } else if (UpdateType.TYPE_MORE == updateType) {
+            mPage++;
+        }
+        task = Rxs.applyBase(AppManager.getInstance().getWeiboService()
+                .getWeiboList(Apps.getAccessToken(), mPage, 20))
                 .subscribe(new MySubscriber<>(new PreCallback<Weibo>(view) {
                     @Override
+                    public void onBefore() {
+                        if (mPage == 1 && !forceUpdate) super.onBefore();
+                    }
+
+                    @Override
                     public void onSuccess(Weibo result) {
-                        view.showWeiboList(result);
+                        view.showWeibos(result, updateType);
+                    }
+
+                    @Override
+                    public void onFailure(Exp exp) {
+                        super.onFailure(exp);
+                        mPage--;
                     }
                 }));
     }

@@ -33,6 +33,7 @@ public interface WeiboApi {
     <T> Observable<Echo<T>> get(@Url String url, @QueryMap Map<String, String> params);
 
     @GET(Constants.PUB_TIMELINE_URL)
-    Observable<Weibo> getWeiboList(@Query("access_token") String access_token);
+    Observable<Weibo> getWeiboList(@Query("access_token") String access_token,
+            @Query("page") int page, @Query("count") int count);
 
 }

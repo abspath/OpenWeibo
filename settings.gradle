@@ -1,1 +1,1 @@
-include ':application', ':baserecyclerview', ':net'
+include ':application', ':baserecyclerview', ':net', ':swiperefreshlayout'

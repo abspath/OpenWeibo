@@ -20,7 +20,6 @@ import com.abspath.openweibo.R;
  * <br>Date: 2017/3/22
  * <br>Email: developer.huajianjiang@gmail.com
  */
-
 public abstract class BaseActivity extends AppCompatActivity {
     private static final String TAG = BaseActivity.class.getSimpleName();
 

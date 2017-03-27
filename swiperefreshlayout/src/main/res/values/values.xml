@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="SwipyRefreshLayout">
+        <attr name="srl_direction">
+            <enum name="top" value="0" />
+            <enum name="bottom" value="1" />
+            <enum name="both" value="2" />
+        </attr>
+        <attr name="colorSchemes" format="reference"/>
+    </declare-styleable>
+
+    <array name="color_schemes_default">
+        <item>#ff000000</item>
+        <item>#ffff0000</item>
+        <item>#ffffff00</item>
+    </array>
+
+</resources>

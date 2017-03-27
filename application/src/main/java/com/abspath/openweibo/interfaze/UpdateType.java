@@ -9,5 +9,5 @@ package com.abspath.openweibo.interfaze;
  */
 
 public enum UpdateType {
-    TYPE_NONE, TYPE_REFRESH, TYPE_LOAD_MORE;
+    TYPE_NONE, TYPE_REFRESH, TYPE_MORE;
 }
