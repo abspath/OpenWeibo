@@ -2,11 +2,10 @@ package com.abspath.openweibo.presenter;
 
 import com.abspath.openweibo.AppManager;
 import com.abspath.openweibo.data.model.Weibo;
+import com.abspath.openweibo.interfaze.AppNetCallback;
 import com.abspath.openweibo.interfaze.UpdateType;
 import com.abspath.openweibo.interfaze.WeiboContract;
 import com.abspath.openweibo.util.RxUtils;
-import com.github.huajianjiang.net.Exp;
-import com.github.huajianjiang.net.NetCallback;
 import com.github.huajianjiang.net.rxjava.MySubscriber;
 import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 
@@ -25,47 +24,27 @@ public class WeiboPresenter extends BasePresenter<WeiboContract.IView>
     }
 
     @Override
-    public void onStart() {
+    public void start() {
         loadMovies(false, UpdateType.TYPE_NONE);
     }
 
     @Override
-    public void onStop() {
-
-    }
-
-    @Override
-    protected void loadDataFromRemote() {
+    public void stop() {
 
     }
 
     @Override
     public void loadMovies(boolean forceUpdate, UpdateType updateType) {
         if (view == null || !view.isActive()) return;
-        AppManager appManager = AppManager.getInstance(view.getCtxt());
+        AppManager appManager = AppManager.getInstance();
         Oauth2AccessToken accessToken = appManager.getAccessToken();
         if (accessToken == null || !accessToken.isSessionValid()) return;
 
         RxUtils.applyBase(appManager.getWeiboService().getWeiboList(accessToken.getToken()))
-                .subscribe(new MySubscriber<>(new NetCallback<Weibo>() {
-                    @Override
-                    public void onBefore() {
-                        view.showLoadingUI();
-                    }
-
+                .subscribe(new MySubscriber<>(new AppNetCallback<Weibo>(view) {
                     @Override
                     public void onSuccess(Weibo result) {
                         view.showWeiboList(result);
-                    }
-
-                    @Override
-                    public void onFailure(Exp exp) {
-                        view.showFailureUI();
-                    }
-
-                    @Override
-                    public void onEnd() {
-                        view.clearUI();
                     }
                 }));
     }

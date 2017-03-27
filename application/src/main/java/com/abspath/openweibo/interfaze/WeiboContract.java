@@ -9,7 +9,6 @@ import com.abspath.openweibo.data.model.Weibo;
  * <br>Date: 2017/2/27
  * <br>Email: developer.huajianjiang@gmail.com
  */
-
 public interface WeiboContract {
 
     interface IView extends BaseContract.BaseIView<IPresenter>, NetIView {

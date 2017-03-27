@@ -1,7 +1,6 @@
 package com.abspath.openweibo;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 
 import com.abspath.openweibo.net.WeiboApi;
 import com.github.huajianjiang.net.RetrofitManager;
@@ -17,7 +16,6 @@ import com.sina.weibo.sdk.auth.Oauth2AccessToken;
 public class AppManager {
     @SuppressLint("StaticFieldLeak")
     private static AppManager INSTANCE;
-    private Context mAppCtxt;
     //微博Auth2授权后的 Token 信息
     private Oauth2AccessToken mAccessToken;
     // OkHttp + Retrofit 初始化和创建API接口封装的管理类
@@ -25,14 +23,13 @@ public class AppManager {
     // 微博 API 接口描述
     private WeiboApi mApi;
 
-    private AppManager(Context ctxt) {
-        mAppCtxt = ctxt.getApplicationContext();
+    private AppManager() {
     }
 
-    public static AppManager getInstance(Context ctxt) {
+    public static AppManager getInstance() {
         synchronized (AppManager.class) {
             if (INSTANCE == null) {
-                INSTANCE = new AppManager(ctxt);
+                INSTANCE = new AppManager();
             }
             return INSTANCE;
         }
@@ -40,7 +37,7 @@ public class AppManager {
 
     public RetrofitManager getRetrofitManager() {
         if (mRetrofitManager == null) {
-            mRetrofitManager = RetrofitManager.getInstance(mAppCtxt);
+            mRetrofitManager = RetrofitManager.getInstance();
         }
         return mRetrofitManager;
     }

@@ -1,8 +1,5 @@
 package com.github.huajianjiang.net;
 
-import android.content.Context;
-
-import com.github.huajianjiang.net.okhttp.CheckingInterceptor;
 import com.github.huajianjiang.net.okhttp.LoggingInterceptor;
 import com.github.huajianjiang.net.okhttp.ParamInterceptor;
 import com.github.huajianjiang.net.util.Config;
@@ -32,26 +29,25 @@ public class RetrofitManager {
     private OkHttpClient mOkHttpClient;
     private Retrofit mRetrofit;
 
-    public static RetrofitManager getInstance(Context ctxt) {
+    public static RetrofitManager getInstance() {
         synchronized (RetrofitManager.class) {
             if (INSTANCE == null) {
-                INSTANCE = new RetrofitManager(ctxt);
+                INSTANCE = new RetrofitManager();
             }
             return INSTANCE;
         }
     }
 
-    private RetrofitManager(Context ctxt) {
-        setupOKHttpClient(ctxt);
+    private RetrofitManager() {
+        setupOKHttpClient();
         setupRetrofit();
     }
 
-    private void setupOKHttpClient(Context ctxt) {
+    private void setupOKHttpClient() {
         mOkHttpClient = new OkHttpClient.Builder()
                 .connectTimeout(CONNECT_TIMEOUT, TimeUnit.SECONDS)
                 .readTimeout(READ_TIMEOUT, TimeUnit.SECONDS)
                 .writeTimeout(WRITE_TIMEOUT, TimeUnit.SECONDS)
-                .addInterceptor(new CheckingInterceptor(ctxt))
                 .addInterceptor(
                         new ParamInterceptor(ParamInterceptor.TYPE_HEADER, null))
                 .addInterceptor(new LoggingInterceptor())

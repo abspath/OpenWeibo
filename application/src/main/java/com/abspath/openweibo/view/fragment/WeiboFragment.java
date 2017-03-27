@@ -1,6 +1,5 @@
 package com.abspath.openweibo.view.fragment;
 
-import android.content.Context;
 import android.os.Bundle;
 import android.support.v7.widget.DividerItemDecoration;
 import android.support.v7.widget.RecyclerView;
@@ -51,7 +50,7 @@ public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
     }
 
     @Override
-    public void onBindPresenter(WeiboContract.IPresenter presenter) {
+    public void bindPresenter(WeiboContract.IPresenter presenter) {
         mPresenter = presenter;
     }
 
@@ -66,8 +65,4 @@ public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
         return isAdded();
     }
 
-    @Override
-    public Context getCtxt() {
-        return getContext();
-    }
 }

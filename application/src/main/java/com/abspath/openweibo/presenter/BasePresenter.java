@@ -1,6 +1,5 @@
 package com.abspath.openweibo.presenter;
 
-
 import com.abspath.openweibo.interfaze.BaseContract;
 
 /**
@@ -14,15 +13,13 @@ public abstract class BasePresenter<V> implements BaseContract.BaseIPresenter<V>
     private static final String TAG = BasePresenter.class.getSimpleName();
     protected V view;
 
-    protected abstract void loadDataFromRemote();
-
     @Override
-    public void onBindView(V view) {
+    public void bindView(V view) {
         this.view = view;
     }
 
     @Override
-    public void onUnbindView() {
+    public void unbindView() {
         view = null;
     }
 }
