@@ -16,7 +16,6 @@ import android.view.ViewGroup;
 import com.abspath.openweibo.R;
 import com.abspath.openweibo.presenter.WeiboPresenter;
 
-
 /**
  * Title:
  * <p>Description:
@@ -68,11 +67,11 @@ public class MainFragment extends Fragment
         public Fragment getItem(int position) {
             switch (position) {
                 case 0:
-                    WeiboFragment weiboView = new WeiboFragment();
-                    WeiboPresenter presenter = new WeiboPresenter();
-                    presenter.onBindView(weiboView);
-                    weiboView.onBindPresenter(presenter);
-                    return weiboView;
+                    WeiboFragment v = new WeiboFragment();
+                    WeiboPresenter p = new WeiboPresenter();
+                    p.bindView(v);
+                    v.bindPresenter(p);
+                    return v;
                 case 1:
                     return new MsgFragment();
                 case 2:
