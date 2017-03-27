@@ -8,17 +8,17 @@ package com.abspath.openweibo.interfaze;
  * <br>Email: developer.huajianjiang@gmail.com
  */
 
-public interface NetIView {
+public interface PreIView {
 
     int TYPE_REFRESH = 0;
 
     int TYPE_LOAD_MORE = 1;
 
-    void showLoadingUI();
+    void showLoadingUi();
 
-    void showSuccessUI();
+    void showSuccessUi();
 
-    void showFailureUI();
+    void showFailureUi();
 
-    void clearUI();
+    void clearPreUi();
 }

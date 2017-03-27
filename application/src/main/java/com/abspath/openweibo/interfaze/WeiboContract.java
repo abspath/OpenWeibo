@@ -11,15 +11,13 @@ import com.abspath.openweibo.data.model.Weibo;
  */
 public interface WeiboContract {
 
-    interface IView extends BaseContract.BaseIView<IPresenter>, NetIView {
+    interface IView extends BaseContract.BaseIView<IPresenter>, PreIView {
         // extra view api
         void showWeiboList(Weibo weibos);
-
-        boolean isActive();
     }
 
     interface IPresenter extends BaseContract.BaseIPresenter<IView> {
         // extra presenter api
-        void loadMovies(boolean forceUpdate, UpdateType updateType);
+        void loadWeibos(boolean forceUpdate, UpdateType updateType);
     }
 }

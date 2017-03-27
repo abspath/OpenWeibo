@@ -59,10 +59,4 @@ public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
         Logger.e(TAG,weibo.statuses.toString());
         mAdapter.insertItems(weibo.statuses);
     }
-
-    @Override
-    public boolean isActive() {
-        return isAdded();
-    }
-
 }

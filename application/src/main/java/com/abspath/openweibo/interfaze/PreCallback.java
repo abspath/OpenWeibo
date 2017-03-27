@@ -11,25 +11,25 @@ import com.github.huajianjiang.net.NetCallback;
  * <br>Email: developer.huajianjiang@gmail.com
  */
 
-public abstract class AppNetCallback<T> implements NetCallback<T> {
-    private NetIView mView;
+public abstract class PreCallback<T> implements NetCallback<T> {
+    private PreIView mView;
 
-    public AppNetCallback(NetIView view) {
+    public PreCallback(PreIView view) {
         mView = view;
     }
 
     @Override
     public void onBefore() {
-        mView.showLoadingUI();
+        if (mView != null) mView.showLoadingUi();
     }
 
     @Override
     public void onFailure(Exp exp) {
-        mView.showFailureUI();
+        if (mView != null) mView.showFailureUi();
     }
 
     @Override
     public void onEnd() {
-        mView.clearUI();
+        if (mView != null) mView.clearPreUi();
     }
 }

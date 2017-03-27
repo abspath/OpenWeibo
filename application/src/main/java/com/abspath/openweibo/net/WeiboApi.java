@@ -1,7 +1,7 @@
 package com.abspath.openweibo.net;
 
 import com.abspath.openweibo.data.model.Weibo;
-import com.abspath.openweibo.util.Constant;
+import com.abspath.openweibo.util.Constants;
 import com.github.huajianjiang.net.Echo;
 
 import java.util.Map;
@@ -32,7 +32,7 @@ public interface WeiboApi {
     @GET()
     <T> Observable<Echo<T>> get(@Url String url, @QueryMap Map<String, String> params);
 
-    @GET(Constant.PUB_TIMELINE_URL)
+    @GET(Constants.PUB_TIMELINE_URL)
     Observable<Weibo> getWeiboList(@Query("access_token") String access_token);
 
 }

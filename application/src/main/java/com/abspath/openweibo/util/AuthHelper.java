@@ -59,8 +59,8 @@ public final class AuthHelper implements WeiboAuthListener {
     public void doAuth() {
         Activity acti = mActivityRef.get();
         if (acti == null) return;
-        AuthInfo mAuthInfo = new AuthInfo(acti.getApplicationContext(), Constant.APP_KEY,
-                Constant.REDIRECT_URL, Constant.SCOPE);
+        AuthInfo mAuthInfo = new AuthInfo(acti.getApplicationContext(), Constants.APP_KEY,
+                Constants.REDIRECT_URL, Constants.SCOPE);
         mSsoHandler = new SsoHandler(acti, mAuthInfo);
         mSsoHandler.authorize(this);
     }

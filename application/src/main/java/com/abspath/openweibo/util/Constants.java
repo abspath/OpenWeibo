@@ -8,7 +8,7 @@ package com.abspath.openweibo.util;
  * <br>Email: developer.huajianjiang@gmail.com
  */
 
-public interface Constant {
+public interface Constants {
 
     String APP_KEY = "3812601579";
 

@@ -10,7 +10,7 @@ import android.widget.FrameLayout;
 
 import com.abspath.openweibo.R;
 import com.abspath.openweibo.interfaze.BaseContract;
-import com.abspath.openweibo.interfaze.NetIView;
+import com.abspath.openweibo.interfaze.PreIView;
 import com.abspath.openweibo.util.Logger;
 
 /**
@@ -21,7 +21,7 @@ import com.abspath.openweibo.util.Logger;
  * <br>Email: developer.huajianjiang@gmail.com
  */
 
-public abstract class BaseFragment extends Fragment implements NetIView, View.OnClickListener {
+public abstract class BaseFragment extends Fragment implements PreIView, View.OnClickListener {
     private static final String TAG = BaseFragment.class.getSimpleName();
 
     private BaseContract.BaseIPresenter<?> mPresenter;
@@ -82,7 +82,7 @@ public abstract class BaseFragment extends Fragment implements NetIView, View.On
         super.onActivityCreated(savedInstanceState);
         if ((mFirstVisible) && mPresenter != null && getUserVisibleHint()) {
             Logger.e(TAG, "****onActivityCreated*** loading Data");
-            mPresenter.onStart();
+            mPresenter.start();
             mFirstVisible = false;
         }
     }
@@ -94,7 +94,7 @@ public abstract class BaseFragment extends Fragment implements NetIView, View.On
              isVisible()))
         {
             Logger.e(TAG, "setUserVisibleHint===>" + "loading Data");
-            mPresenter.onStart();
+            mPresenter.start();
             mFirstVisible = false;
         }
     }
@@ -104,8 +104,8 @@ public abstract class BaseFragment extends Fragment implements NetIView, View.On
         super.onDestroyView();
         //取消网络请求或者异步任务
         if (mPresenter != null) {
-            mPresenter.onStop();
-            mPresenter.onUnbindView();
+            mPresenter.stop();
+            mPresenter.unbindView();
         }
     }
 
@@ -148,27 +148,27 @@ public abstract class BaseFragment extends Fragment implements NetIView, View.On
         showLoading();
         //重新加载数据
         if (mPresenter != null) {
-            mPresenter.onStart();
+            mPresenter.start();
         }
     }
 
     @Override
-    public void showLoadingUI() {
+    public void showLoadingUi() {
         showLoading();
     }
 
     @Override
-    public void showSuccessUI() {
+    public void showSuccessUi() {
 
     }
 
     @Override
-    public void showFailureUI() {
+    public void showFailureUi() {
         showDataError();
     }
 
     @Override
-    public void clearUI() {
+    public void clearPreUi() {
         hideLoading();
         hideDataError();
     }

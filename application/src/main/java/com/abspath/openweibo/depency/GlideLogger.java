@@ -13,9 +13,8 @@ import java.util.Locale;
  * <br>Date: 2017/3/21
  * <br>Email: developer.huajianjiang@gmail.com
  */
-
-public class GlideLoggingListener<T, R> implements RequestListener<T, R> {
-    private static final String TAG = GlideLoggingListener.class.getSimpleName();
+public class GlideLogger<T, R> implements RequestListener<T, R> {
+    private static final String TAG = GlideLogger.class.getSimpleName();
 
     @Override
     public boolean onException(Exception e, T model, Target<R> target, boolean isFirstResource)

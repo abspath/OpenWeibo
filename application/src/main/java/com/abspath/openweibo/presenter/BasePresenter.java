@@ -22,4 +22,8 @@ public abstract class BasePresenter<V> implements BaseContract.BaseIPresenter<V>
     public void unbindView() {
         view = null;
     }
+
+    protected boolean isActive() {
+        return view != null;
+    }
 }
