@@ -48,7 +48,7 @@ public final class AuthHelper implements WeiboAuthListener {
         Oauth2AccessToken mAccessToken = AccessTokenKeeper
                 .readAccessToken(acti.getApplicationContext());
         if (mAccessToken != null && mAccessToken.isSessionValid()) {
-            AppManager.getInstance(acti).setAccessToken(mAccessToken);
+            AppManager.getInstance().setAccessToken(mAccessToken);
             acti.startActivity(new Intent(acti, MainActivity.class));
             acti.finish();
         } else {
@@ -76,7 +76,7 @@ public final class AuthHelper implements WeiboAuthListener {
                 if (acti == null) return;
                 Oauth2AccessToken mAccessToken = Oauth2AccessToken.parseAccessToken(bundle);
                 if (mAccessToken.isSessionValid()) {
-                    AppManager.getInstance(acti).setAccessToken(mAccessToken);
+                    AppManager.getInstance().setAccessToken(mAccessToken);
                     // 保存 Token 到 SharedPreferences
                     AccessTokenKeeper.writeAccessToken(acti.getApplicationContext(), mAccessToken);
                     Msgs.longToast(acti.getApplicationContext(),
