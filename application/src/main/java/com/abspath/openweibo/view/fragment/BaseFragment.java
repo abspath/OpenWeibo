@@ -110,9 +110,6 @@ public abstract class BaseFragment extends Fragment implements PreIView, View.On
         }
     }
 
-    protected boolean isFirstVisible() {
-        return mFirstVisible;
-    }
 
     private void hideDataError() {
         if (mDataErrorWhole != null && mDataErrorWhole.getVisibility() == View.VISIBLE) {

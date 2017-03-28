@@ -45,9 +45,9 @@ public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
             @Override
             public void onRefresh(SwipyRefreshLayoutDirection direction) {
                 if (direction == SwipyRefreshLayoutDirection.TOP) {
-                    mP.loadWeibos(isFirstVisible(), true, UpdateType.TYPE_REFRESH);
+                    mP.loadWeibos(UpdateType.TYPE_REFRESH);
                 } else if (direction == SwipyRefreshLayoutDirection.BOTTOM) {
-                    mP.loadWeibos(isFirstVisible(), false, UpdateType.TYPE_MORE);
+                    mP.loadWeibos(UpdateType.TYPE_MORE);
                 }
             }
         });
@@ -97,7 +97,7 @@ public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
     @Override
     protected void onRetry() {
         super.onRetry();
-        mP.loadWeibos(isFirstVisible(), false, UpdateType.TYPE_RETRY);
+        mP.loadWeibos(UpdateType.TYPE_RETRY);
     }
 
     @Override

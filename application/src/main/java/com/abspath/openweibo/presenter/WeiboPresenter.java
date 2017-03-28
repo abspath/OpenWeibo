@@ -26,25 +26,24 @@ public class WeiboPresenter extends BasePresenter<WeiboContract.IView>
 
     @Override
     public void start() {
-        loadWeibos(true, false, UpdateType.TYPE_INIT);
+        loadWeibos(UpdateType.TYPE_INIT);
     }
 
     @Override
-    public void loadWeibos(final boolean firstLoad, final boolean forceUpdate,
-            final UpdateType updateType)
+    public void loadWeibos(final UpdateType updateType)
     {
         if (!isActive()) return;
-        if (forceUpdate || UpdateType.TYPE_REFRESH == updateType) {
+        if (UpdateType.TYPE_REFRESH == updateType) {
             mPage = 1;
         } else if (UpdateType.TYPE_MORE == updateType) {
             mPage++;
         }
         task = Rxs.applyBase(AppManager.getInstance().getWeiboService()
-                .getWeiboList(Apps.getAccessToken(), mPage, 20))
+                .getWeibos(Apps.getAccessToken(), mPage, 20))
                 .subscribe(new MySubscriber<>(new PreCallback<Weibo>(view) {
                     @Override
                     public void onBefore() {
-                        if (firstLoad) super.onBefore();
+                        if (UpdateType.TYPE_INIT == updateType) super.onBefore();
                     }
 
                     @Override
@@ -62,7 +61,7 @@ public class WeiboPresenter extends BasePresenter<WeiboContract.IView>
 
                     @Override
                     public void onFailure(Exp exp) {
-                        if (firstLoad) super.onFailure(exp);
+                        if (UpdateType.TYPE_INIT == updateType) super.onFailure(exp);
                         else view.showExceptionHint(exp.getErrorMsg());
                     }
                 }));

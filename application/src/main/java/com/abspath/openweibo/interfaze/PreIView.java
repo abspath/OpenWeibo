@@ -9,11 +9,6 @@ package com.abspath.openweibo.interfaze;
  */
 
 public interface PreIView {
-
-    int TYPE_REFRESH = 0;
-
-    int TYPE_LOAD_MORE = 1;
-
     void showLoadingUi();
 
     void showSuccessUi();

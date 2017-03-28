@@ -24,6 +24,6 @@ public interface WeiboContract {
 
     interface IPresenter extends BaseContract.BaseIPresenter<IView> {
         // extra presenter api
-        void loadWeibos(boolean firstLoad, boolean forceUpdate, UpdateType updateType);
+        void loadWeibos(UpdateType updateType);
     }
 }
