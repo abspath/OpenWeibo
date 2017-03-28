@@ -14,6 +14,7 @@ import com.abspath.openweibo.interfaze.BaseContract;
 import com.abspath.openweibo.interfaze.UpdateType;
 import com.abspath.openweibo.interfaze.WeiboContract;
 import com.abspath.openweibo.util.Logger;
+import com.abspath.openweibo.util.Msgs;
 import com.abspath.openweibo.util.Views;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayout;
 import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutDirection;
@@ -28,7 +29,7 @@ import com.orangegangsters.github.swipyrefreshlayout.library.SwipyRefreshLayoutD
 public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
     private static final String TAG = WeiboFragment.class.getSimpleName();
     private WeiboContract.IPresenter mP;
-    private SwipyRefreshLayout mSrL;
+    private SwipyRefreshLayout mSrl;
     private RecyclerView mRv;
     private WeiboAdapter mAdapter;
 
@@ -39,14 +40,14 @@ public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
 
     @Override
     public void onInitView(View root) {
-        mSrL = Views.find(root, R.id.srl);
-        mSrL.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
+        mSrl = Views.find(root, R.id.srl);
+        mSrl.setOnRefreshListener(new SwipyRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh(SwipyRefreshLayoutDirection direction) {
                 if (direction == SwipyRefreshLayoutDirection.TOP) {
-                    mP.loadWeibos(true, UpdateType.TYPE_REFRESH);
+                    mP.loadWeibos(isFirstVisible(), true, UpdateType.TYPE_REFRESH);
                 } else if (direction == SwipyRefreshLayoutDirection.BOTTOM) {
-                    mP.loadWeibos(false, UpdateType.TYPE_MORE);
+                    mP.loadWeibos(isFirstVisible(), false, UpdateType.TYPE_MORE);
                 }
             }
         });
@@ -71,8 +72,8 @@ public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
 
     @Override
     public void showWeibos(Weibo weibo, UpdateType updateType) {
-        Logger.e(TAG, weibo.statuses.toString());
-        if (updateType == UpdateType.TYPE_REFRESH) {
+        Logger.e(TAG, weibo.statuses.size() + "");
+        if (updateType == UpdateType.TYPE_REFRESH || updateType == UpdateType.TYPE_INIT) {
             mAdapter.invalidateItems(weibo.statuses);
         } else if (updateType == UpdateType.TYPE_MORE) {
             mAdapter.insertItems(weibo.statuses);
@@ -80,8 +81,21 @@ public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
     }
 
     @Override
+    public void showNoMoreWeiboHint(UpdateType updateType) {
+        if (updateType == UpdateType.TYPE_MORE) {
+            Msgs.shortToast(getContext(), R.string.no_more_weibo_data);
+        }
+    }
+
+    @Override
+    protected void onRetry() {
+        super.onRetry();
+        mP.loadWeibos(isFirstVisible(), false, UpdateType.TYPE_RETRY);
+    }
+
+    @Override
     public void clearPreUi() {
         super.clearPreUi();
-        mSrL.setRefreshing(false);
+        mSrl.setRefreshing(false);
     }
 }

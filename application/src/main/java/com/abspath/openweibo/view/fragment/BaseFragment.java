@@ -110,6 +110,10 @@ public abstract class BaseFragment extends Fragment implements PreIView, View.On
         }
     }
 
+    protected boolean isFirstVisible() {
+        return mFirstVisible;
+    }
+
     private void hideDataError() {
         if (mDataErrorWhole != null && mDataErrorWhole.getVisibility() == View.VISIBLE) {
             mDataErrorWhole.setVisibility(View.GONE);
@@ -140,17 +144,14 @@ public abstract class BaseFragment extends Fragment implements PreIView, View.On
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.data_error_whole_layout:
-                retry();
+                onRetry();
                 break;
         }
     }
 
-    private void retry() {
+    protected void onRetry() {
         //重新加载数据
-        if (mP != null) {
-            showLoading();
-            mP.start();
-        }
+        showLoading();
     }
 
     @Override

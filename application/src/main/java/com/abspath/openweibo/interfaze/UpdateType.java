@@ -7,7 +7,6 @@ package com.abspath.openweibo.interfaze;
  * <br>Date: 2017/3/24
  * <br>Email: developer.huajianjiang@gmail.com
  */
-
 public enum UpdateType {
-    TYPE_NONE, TYPE_REFRESH, TYPE_MORE;
+    TYPE_INIT, TYPE_REFRESH, TYPE_MORE, TYPE_RETRY
 }
