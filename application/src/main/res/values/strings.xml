@@ -11,7 +11,8 @@
 
     <string name="loading">正在加载…</string>
     <string name="error_data_whole">数据加载失败,点击界面任意位置重试.</string>
-    <string name="no_more_weibo_data">没有更多微博了,๑乛◡乛๑</string>
+    <string name="refresh_failure">刷新失败,重试看看呢 =_="</string>
+    <string name="no_more_weibo_data">没有更多微博了 ╮(－_－)╭</string>
 
     <string name="offline">未登录,请先登录.</string>
     <string name="weibo_sign_in">微博账号登录</string>

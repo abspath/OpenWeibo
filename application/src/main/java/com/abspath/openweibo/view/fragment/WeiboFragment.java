@@ -59,8 +59,7 @@ public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
     }
 
     @Override
-    public View onBuildView(LayoutInflater inflater, ViewGroup container,
-            Bundle savedInstanceState)
+    public View onBuildView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState)
     {
         return inflater.inflate(R.layout.frag_home, container, false);
     }
@@ -81,10 +80,18 @@ public class WeiboFragment extends BaseFragment implements WeiboContract.IView {
     }
 
     @Override
-    public void showNoMoreWeiboHint(UpdateType updateType) {
-        if (updateType == UpdateType.TYPE_MORE) {
-            Msgs.shortToast(getContext(), R.string.no_more_weibo_data);
-        }
+    public void showRefreshFailureHint() {
+        Msgs.shortToast(getContext(), R.string.refresh_failure);
+    }
+
+    @Override
+    public void showNoMoreWeiboHint() {
+        Msgs.shortToast(getContext(), R.string.no_more_weibo_data);
+    }
+
+    @Override
+    public void showExceptionHint(String msg) {
+        Msgs.shortToast(getContext(), msg);
     }
 
     @Override

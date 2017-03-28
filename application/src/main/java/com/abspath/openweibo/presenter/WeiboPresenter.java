@@ -8,6 +8,7 @@ import com.abspath.openweibo.interfaze.WeiboContract;
 import com.abspath.openweibo.util.Apps;
 import com.abspath.openweibo.util.Ifs;
 import com.abspath.openweibo.util.Rxs;
+import com.github.huajianjiang.net.Exp;
 import com.github.huajianjiang.net.rxjava.MySubscriber;
 
 /**
@@ -49,10 +50,20 @@ public class WeiboPresenter extends BasePresenter<WeiboContract.IView>
                     @Override
                     public void onSuccess(Weibo result) {
                         if (Ifs.isNullOrEmpty(result.statuses)) {
-                            view.showNoMoreWeiboHint(updateType);
+                            if (updateType == UpdateType.TYPE_MORE) {
+                                view.showNoMoreWeiboHint();
+                            } else if (updateType == UpdateType.TYPE_REFRESH) {
+                                view.showRefreshFailureHint();
+                            }
                         } else {
                             view.showWeibos(result, updateType);
                         }
+                    }
+
+                    @Override
+                    public void onFailure(Exp exp) {
+                        if (firstLoad) super.onFailure(exp);
+                        else view.showExceptionHint(exp.getErrorMsg());
                     }
                 }));
     }

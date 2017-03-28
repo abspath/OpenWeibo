@@ -15,7 +15,11 @@ public interface WeiboContract {
         // extra view api
         void showWeibos(Weibo weibos, UpdateType updateType);
 
-        void showNoMoreWeiboHint(UpdateType updateType);
+        void showRefreshFailureHint();
+
+        void showNoMoreWeiboHint();
+
+        void showExceptionHint(String msg);
     }
 
     interface IPresenter extends BaseContract.BaseIPresenter<IView> {
